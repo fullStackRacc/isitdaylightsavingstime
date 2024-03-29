@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Is It Daylight Savings Time?</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="" />
+  <link rel="icon" href="favicon.png">
+  <link rel="stylesheet" href="./styles.css">
+  <style>
+
+  </style>
+</head>
+
+<body>
+    <div id="yes-or-no" class="container"></div>
+  <script>
+    function hasDST(date = new Date()) {
+    const january = new Date(
+        date.getFullYear(),
+        0,
+        1,
+    ).getTimezoneOffset();
+    const july = new Date(
+        date.getFullYear(),
+        6,
+        1,
+    ).getTimezoneOffset();
+
+    return Math.max(january, july) !== date.getTimezoneOffset();
+    }
+
+    const yesOrNoDiv = document.getElementById("yes-or-no");
+    const changeAnswer = () => {
+        if (hasDST(new Date())) {
+            yesOrNoDiv.innerHTML = `<img src="raccoons/yes.jpg" />`
+        } else {
+            yesOrNoDiv.innerHTML = `<img src="raccoons/no.jpg" />`
+        }
+    }
+
+    changeAnswer();
+  </script>
+</body>
+
+</html>
